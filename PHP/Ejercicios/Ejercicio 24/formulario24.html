@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 24</title>
+</head>
+<body>
+    <form action="./Ejercicio24.php" method="post">
+        <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+                <td><label for="nombre">Nombre: </label></td>
+                <td><input type="text" name="nombre" id="nombre" required></td>
+            </tr>
+            <tr>
+                <td><label for="NSS">Número de seguridad social: </label></td>
+                <td><input type="text" name="NSS" id="NSS" required pattern="\d{12}" title="Debes introducir 12 números"></td>
+            </tr>
+            <tr>
+                <td><label for="consulta">Tipo de consulta: </label></td>
+                <td>
+                    <input type="radio" name="consulta" value="Medicina general" id="Medicina general" >
+                    <label for="Medicina general">Medicina general</label>
+                    <input type="radio" name="consulta" value="Pediatría" id="Pediatría">
+                    <label for="Pediatría">Pediatría</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="fecha">Fecha de la consulta: </label></td>
+                <td><input type="date" name="fecha" id="fecha" ></td>
+            </tr>
+            <tr>
+                <td><label for="hora">Hora de la consulta: </label></td>
+                <td>
+                    <select name="hora" id="hora" >
+                        <option></option>
+                        <option value="mañana">Mañana</option>
+                        <option value="tarde">Tarde</option>
+                        <option value="noche">Noche</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <input type="submit" value="Enviar">
+                    <input type="reset" value="Limpiar">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
