@@ -1,0 +1,21 @@
+--- DOXYGEN ---
+
+1.- Instalar en linux usar: sudo apt install doxygen 
+2.- Una vez instalado, situarnos en el directorio en el que queremos hacer la documentación
+3.- Usar doxygen para que nos genere el fichero de configuración: doxygen -g
+
+4.1 - Editar el fichero de configuración Doxyfile
+    1.- Editar el fichero de configuración Doxyfile
+    2.- Buscar la línea que pone: PROJECT_NAME = "My Project"
+    3.- Cambiar "My Project" por el nombre de nuestro proyecto
+    4.- Buscar la línea que pone: INPUT = 
+    5.- Añadir los directorios que queremos documentar
+    6.- Buscar la línea que pone: EXCLUDE =
+    7.- Añadir los directorios que queremos excluir
+    8.- Guardar el fichero de configuración
+
+4.2 - Usar doxygen para que nos genere la documentación: doxygen Doxyfile
+    1.- Una vez generado, se creará un directorio llamado "html" en el que se encontrará la documentación
+    2.- Abrir el fichero index.html que se encuentra en el directorio "html" para ver la documentación
+    3.- Para actualizar la documentación, basta con volver a ejecutar el comando doxygen Doxyfile
+
