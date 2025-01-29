@@ -1,0 +1,34 @@
+
+div {
+    margin: 0 auto;
+    text-align: center;
+    width: 80%;
+}
+
+button {
+    background-color: blue;
+    border-radius: 30px;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+#rapido{
+    padding: 20px 40px;
+    opacity: 0.8;
+    background-color: rgb(44, 246, 44);
+    border-radius: 100px;
+    font-size: 80px;
+}
+
+
+#veloz{
+    /* Mover 20 pixeles para abajo*/
+    margin-top: 20px;
+}

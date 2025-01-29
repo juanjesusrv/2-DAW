@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./styles.css" rel="stylesheet">
+    <script src="./logica.js"></script>
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <div class="container">
+        <h1 id="tituloJuego">Jugar a La Primitiva</h1>
+        <div class="botones-juego">
+            <button onclick="cambiarJuego('primitiva')">Jugar a La Primitiva</button>
+            <button onclick="cambiarJuego('quiniela')">Jugar a La Quiniela</button>
+        </div>
+        <div class="juego" id="primitiva">
+            <button onclick="pedirCombinaciones()">Generar combinaciones</button>
+            <button id="comprobarBoletoPrimitiva" onclick="comprobarBoletoPrimitiva()" style="display:none;">Comprobar boleto</button>
+            <button id="comprobarManualPrimitiva" onclick="comprobarManualPrimitiva()" style="display:none;">Comprobar manualmente</button>
+            <div id="combinacionesPrimitiva"></div>
+        </div>
+        <div class="juego" id="quiniela" style="display:none;">
+            <button onclick="solicitarCombinaciones()">Generar combinaciones</button>
+            <button id="comprobarBoletoQuiniela" onclick="comprobarBoletoQuiniela()" style="display:none;">Comprobar boleto</button>
+            <button id="comprobarManualQuiniela" onclick="comprobarManualQuiniela()" style="display:none;">Comprobar manualmente</button>
+            <div id="combinacionesQuiniela"></div>
+        </div>
+    </div>
+</body>
+</html>

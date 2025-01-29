@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 50px;
+  }
+  
+  #nivel {
+    font-size: 1.5rem;
+    margin: 20px 0;
+  }
+  
+  .botones {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #007BFF;
+    color: white;
+  }
+  
+  button:disabled {
+    background-color: #e0e0e0;
+    color: #888;
+    border: 1px solid #ddd;
+    cursor: not-allowed;
+  }
+  

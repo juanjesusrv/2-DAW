@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador correo electronico</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+    <script src="./logica.js"></script>
+</head>
+<body>
+    <h1>Validador de correo electronico</h1>
+    <hr>
+
+
+    <p><b>Ejercicio 1.</b> Realiza una aplicación web dónde se solicite por pantalla, mediante una ventana emergente, al usuario una cadena de caracteres.<br><br>
+
+        Dicha cadena de caracteres corresponde a un formato válido de email.<br>
+
+        <ul>
+            <li><b><i>Nombre de usuario</i></b>, compuesto por letras mayúsculas o minúsculas, o números, o puntos, o guión bajo o alto</li>
+            <li><b><i>Una arroba</i></b></li>
+            <li><b><i>Nombre de servidor</i></b>, que puede contener los mismos caracteres que el nombre de usuario excepto el punto</li>
+            <li><b><i>El dominio, </i></b>que podrá estar formado por uno o dos grupos de 2 a 4 letras separados por puntos. Por ejemplo, consideramos válido .es, .com, o .com.es.</li>
+        </ul>
+        
+        Los formatos válidos son del tipo:<br>
+
+        <ol>
+            <li>carmelo@gmail.com</li>
+            <li>  carmelo123@gmail.com</li>
+            <li>Carmelo_Jaen@gmail.com</li>
+            <li> carmelo-jaen@gmail.com</li>
+            <li> Carmelo.jaen@gmail.com</li>
+            <li> carmelo@gmail.com.es</li>
+            <li> carmelo.jaen-diaz@gmail.site</li>
+        </ol>
+        
+    </p>
+
+    <table>
+        <tr>
+            <th> ENTRADA </th>
+            <th> SALIDA </th>
+        </tr>
+        <tr>
+            <td>pe.p-Guardiola@gmail.site</td>
+            <td>El correo introducido ha sido almacenado correctamente</td>
+        </tr>
+        <tr>
+            <td>!pepGuardiola@hotmail.org</td>
+            <td>El correo introducido no tiene un formato válido</td>
+        </tr>
+    </table>
+
+    <hr>
+    <h3>Juan Jesús Rivillas ~ 2º DAW</h3>
+</body>
+</html>

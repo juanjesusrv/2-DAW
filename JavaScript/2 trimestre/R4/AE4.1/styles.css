@@ -1,0 +1,15 @@
+/* Estilo para el contenedor de mensajes */
+#output {
+    max-height: 400px; /* Altura máxima para el contenedor de mensajes */
+    overflow-y: auto;  /* Activa el scroll vertical */
+    padding: 10px;
+}
+
+/* Estilo para los mensajes */
+.message-box {
+    padding: 10px;
+    margin-bottom: 10px; /* Separación entre los mensajes */
+    background-color: #f1f1f1; /* Fondo gris claro */
+    border: 1px solid #ddd; /* Borde gris */
+    border-radius: 5px; /* Bordes redondeados */
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador correo electronico</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+    <script src="./logica.js"></script>
+</head>
+<body>
+    <h1>Validador de correo electronico</h1>
+    <hr>
+
+
+    <p><b>Ejercicio 2.</b> Realiza una aplicación web dónde se solicite por pantalla, mediante una ventana emergente, al usuario una cadena de caracteres.<br><br>
+
+        Dicha cadena de caracteres corresponde a un formato válido de email.<br>
+
+        <ul>
+            <li><b><i>Nombre de usuario</i></b>, compuesto por letras mayúsculas o minúsculas, o números, o puntos, o guión bajo o alto</li>
+            <li><b><i>Una arroba</i></b></li>
+            <li><b><i>Nombre de servidor</i></b>, que puede contener los mismos caracteres que el nombre de usuario excepto el punto</li>
+            <li><b><i>El dominio, </i></b>que podrá estar formado por uno o dos grupos de 2 a 4 letras separados por puntos. Por ejemplo, consideramos válido .es, .com, o .com.es.</li>
+        </ul>
+
+        Se le pedirá que lo haga dos veces, en caso de no coincidir, se volverá a solicitar dicho email hasta que coincida. <br><br>
+
+        A continuación, la aplicación mostrará en la parte destinada para tal efecto el siguiente mensaje: <br><br>
+
+        “El email escogido es válido. Establezca una contraseña” <br><br>
+
+        Una vez ingresado el email, la aplicación solicitará que escoja una contraseña válida cuyas características son: 
+
+        <ul>
+            <li>Una minuscula</li>
+            <li>Una mayúscula</li>
+            <li>Un número</li>
+            <li>Un carácter especial de entre los siguientes: #$@!%&?</li>
+            <li>No puede incluir espacios</li>
+            <li>Debe tener una longitud mínima de 8 caracteres y máxima de 16</li>
+        </ul>
+
+        Se le pedirá que lo haga dos veces, en caso de no coincidir, se volverá a solicitar dicha contraseña hasta que coincida.<br><br>
+
+        A continuación, la aplicación mostrará en la parte destinada para tal efecto el siguiente mensaje:<br><br>
+
+        “Email/contraseña configurados con éxito. Ingrese los datos de acceso para acceder a la web”<br><br>
+
+
+        Posteriormente se pedirá que se introduzca esa combinación de email/contraseña con un máximo de 3 intentos, si el usuario acierta aparecerá un mensaje de desbloqueo exitoso, en caso contrario, saldrá un mensaje de usuario bloqueado en la parte destinada para tal efecto.
+
+        <br><br>
+        Ejemplos de contraseñas válidos son:
+
+        <ul>
+            <li>asAB12$%</li>
+            <li>Asdf&1234%Ghjkas</li>
+        </ul>
+        
+
+        Valida mediante una única expresión regular que el email y la contraseña introducidos por el usuario tenga un formato válido.
+
+
+    </p>
+
+    <table>
+        <tr>
+            <th> ENTRADA </th>
+            <th> SALIDA </th>
+        </tr>
+        <tr>
+            <td>pe.p-Guardiola@gmail.site <br> Asdf&1234%Ghjkas</td>
+            <td>El correo introducido ha sido almacenado correctamente</td>
+        </tr>
+        <tr>
+            <td>!pepGuardiola@hotmail.org <br> aB1$</td>
+            <td>El correo introducido no tiene un formato válido</td>
+        </tr>
+    </table>
+
+    <hr>
+    <h3>Juan Jesús Rivillas ~ 2º DAW</h3>
+</body>
+</html>
