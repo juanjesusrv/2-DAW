@@ -1,0 +1,36 @@
+$colors: ( // Mapa con los 10 colores
+    1: #3498db,
+    2: #27ae60,
+    3: #e74c3c,
+    4: #9b59b6,
+    5: #f1c40f,
+    6: #2ecc71,
+    7: #e67e22,
+    8: #1abc9c,
+    9: #34495e,
+    10: #d35400
+);
+
+.contenedor{ // Contenedor de los contenedores
+  display: flex;
+}
+
+.container { // Contenedores de colores
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s; 
+
+    @for $i from 1 through 10 { //El for va a recorrer los 10 contenedores
+        &:nth-child(#{$i}) {  //El nth-child va a seleccionar el contenedor que le corresponde
+            background-color: map-get($colors, $i); //El background-color va a tomar el color que le corresponde
+        }
+        &:nth-child(#{$i}):hover { //El hover va a oscurecer el color al pasar el raton por encima
+            background-color: darken(map-get($colors, $i), 10%);
+        }
+    }
+}

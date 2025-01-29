@@ -1,0 +1,37 @@
+li{
+    list-style: square;
+    font-weight: bolder;
+    
+}
+
+main h2 {
+    color: #336699;
+}
+
+
+a {
+    color: #CC3300;
+}
+
+button {
+    background-color: #FF9900;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    
+}
+
+    
+button:hover {
+    background-color: #CC3300;
+    cursor: pointer;
+    
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+}

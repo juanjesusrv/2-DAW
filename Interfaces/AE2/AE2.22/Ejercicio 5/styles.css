@@ -1,0 +1,62 @@
+/* Quitar viñetas de la lista */
+ul {
+    list-style-type: none;
+}
+
+/* Aplicar márgenes horizontales */
+ul li {
+    margin: 0 5px;
+}
+
+/* Eliminar subrayado */
+a {
+    text-decoration: none;
+}
+
+/* Definir color de texto */
+a {
+    color: #fff;
+}
+
+/* Establecer relleno */
+a {
+    padding: 10px 15px;
+}
+
+/* Agregar transiciones suaves */
+a {
+    -webkit-transition: 1s linear;
+    transition: 1s linear;
+}
+li {
+    -webkit-transition: 1s linear;
+    transition: 1s linear; 
+}
+
+/* Color de fondo predeterminado */
+a {
+    background-color: #3498db;
+}
+
+/* Bordes redondeados */
+a {
+    border-radius: 5px;
+}
+
+/* Alinear en línea horizontalmente */
+ul {
+    display: flex;
+}
+
+/* Estilos al pasar el ratón */
+a:hover {
+    background-color: #1f587d;
+}
+li:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+
+
+

@@ -1,0 +1,121 @@
+.container{
+    position: relative;
+  }
+  .caja{
+    width: 180px;
+    height: 180px;
+    color: white;
+    text-align: center;
+    line-height: 180px;
+    margin: 15px;
+    float: left;
+    font-size: 18px;
+    font-family: Arial;
+
+    -webkit-transition: 1s linear;
+    transition: 1s linear;
+  }
+
+
+  .caja1{
+    background-color: red;
+  }
+  .caja1:hover{
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+
+
+  .caja2{
+    background-color: purple;
+  }
+  .caja2:hover{
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+
+
+  .caja3{
+    background-color: blue;
+  }
+  .caja3:hover{
+    -webkit-transform: translate(10%);
+    transform: translate(10%);
+  }
+
+
+
+  .caja4{
+    background-color: rgb(104, 104, 187);
+  }
+  .caja4:hover{
+    -webkit-transform: skew(10deg);
+    transform: skew(10deg);
+  }
+
+
+
+
+  .caja5{
+    background-color: rgb(47, 154, 72);
+    
+  }
+  .caja5:hover{
+    -webkit-transform: skewY(10deg);
+    transform: skewY(10deg);
+  }
+
+
+  .caja6{
+    background-color: yellow;
+  }
+  .caja6:hover{
+    -webkit-transform: skewX(-5deg);
+    transform: skewX(-5deg);
+  }
+
+
+  .caja7{
+    background-color: orange;
+  }
+  .caja7:hover{
+    -webkit-transform: translateX(20px);
+    transform: translateX(20px);
+  }
+
+
+  .caja8{
+    background-color: lightslategray;
+  }
+  .caja8:hover{
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px);
+  }
+
+
+  .caja9{
+    background-color: darkslategrey;
+  }
+  .caja9:hover{
+    -webkit-transform: perspective(150px) rotateX(45deg);
+    transform: perspective(150px) rotateX(45deg);
+  }
+
+
+  .caja10{
+    background-color: grey;
+  }
+  .caja10:hover{
+    -webkit-transform: perspective(150px) rotateY(45deg);
+    transform: perspective(150px) rotateY(45deg);
+  }
+
+  
+  .caja11{
+    background-color: black;
+  }
+  .caja11:hover{
+    -webkit-transform: matrix(0.5, 0.1, 0.5,1,10, -2);
+    transform: matrix(0.5, 0.1, 0.5, 1, 10, -2);
+  }
+

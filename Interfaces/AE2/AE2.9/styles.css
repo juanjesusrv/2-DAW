@@ -1,0 +1,24 @@
+
+/** Establece un estilo personalizado para la lista, como color de texto, tipo de
+fuente o espaciado, según tus preferencias.
+○ Utiliza el pseudo-selector ::before para cada elemento de la lista y agrega
+el emoji 😻 (&#x1F63B;) antes del contenido del elemento. Asegúrate de que
+el emoji se muestre correctamente y esté separado del texto del elemento.
+○ Añade un espacio o algún estilo de separación entre el emoji y el texto del
+elemento para que se vea estéticamente agradable*/
+
+ul {
+    color: #333;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+ul li::before {
+    content: "\1F63B";
+    margin-right: 0.5em;
+    
+}
+
+li {
+    list-style: none;
+}

@@ -1,0 +1,17 @@
+#cnt-principal{
+    display: flex;
+
+}
+
+#cnt-fijo{
+    background-color: #3498db;
+    width: 300px;
+    padding: 15px;
+}
+
+#cnt-variable{
+    background-color: #e74c3c;
+    width: calc(100% - 300px);
+    padding: 15px;
+
+}

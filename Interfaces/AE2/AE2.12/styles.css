@@ -1,0 +1,55 @@
+
+/** 
+
+Aplica estilos CSS para que la lista del menú tenga la siguiente apariencia:
+● Establece que todos los elementos dentro de la página utilicen la fuente Arial.
+● Dale a la lista (ul) con la clase “menu” un ancho de 140px, elimina las viñetas de
+lista, establece los márgenes y relleno a 0 y agrega un borde de 1px sólido con el
+color #FFC83D.
+● Cada elemento de la lista (li) debe tener un borde inferior de 1px sólido con el
+color #FFC83D. El último elemento de la lista no debe tener un borde inferior.
+● Los enlaces (<a>) dentro de los elementos de la lista deben ocupar todo el ancho
+disponible, centrar su texto, no mostrar subrayado y tener un color de texto de #333.
+Además, deben tener un relleno de 5px y un fondo de color #E5F3FE.
+● Cuando el cursor esté sobre un enlace, el fondo del enlace debe cambiar a #c8e2f7.
+● Agrega un emoji «👉» antes del texto de cada enlace utilizando pseudo-elementos.*/
+
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+ul.menu {
+    width: 140px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #FFC83D;
+}
+
+ul.menu li {
+    border-bottom: 1px solid #FFC83D;
+}
+
+ul.menu li:last-child {
+    border-bottom: none;
+}
+
+ul.menu li a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    padding: 5px;
+    background-color: #E5F3FE;
+}
+
+ul.menu li a:hover {
+    background-color: #c8e2f7;
+}
+
+ul.menu li a::before {
+    content: "👉";
+    margin-right: 5px;
+}
+

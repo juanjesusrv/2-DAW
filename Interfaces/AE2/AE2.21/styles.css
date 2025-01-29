@@ -1,0 +1,13 @@
+:root {
+    --color-principal: #3498db;
+    --color-secundario: white;
+    --radio: 10px;
+}
+
+p {
+    background-color: var(--color-principal);
+    border-radius: var(--radio);
+    padding: 20px;
+    color: var(--color-secundario);
+    font-size: 18px;
+}

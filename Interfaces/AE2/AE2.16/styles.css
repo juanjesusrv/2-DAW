@@ -1,0 +1,121 @@
+/** 
+Crea el código CSS necesario para crear la siguiente miniatura de producto. Utiliza métodos
+tradicionales (ni Bootstrap, ni Flexbox, ni CSS Grid).
+
+Indicaciones:
+
+● La etiqueta <article> flota a la izquierda, tiene un ancho de 350 px, un alto de
+140px, el fondo es de color #F7F3F3 y tiene un márgen de 10px.
+
+*/ 
+
+article {
+    float: left;
+    width: 350px;
+    height: 140px;
+    background-color: #F7F3F3;
+    margin: 10px;
+}
+
+/*
+
+● La etiqueta <img> tiene un padding de 20px, un ancho de 100px y flota a la
+izquierda.
+
+*/ 
+
+img {
+    padding: 20px;
+    width: 100px;
+    float: left;
+}
+
+/*
+
+● La clase .datos-productos flota a la derecha, tiene un padding de 20 píxeles y un
+ancho de 190 píxeles. Al usar padding, no te olvides de la propiedad box-sizing:
+border-box; (quítala y ponla para ver cómo excede el contenido y al no caber se
+descuadra).
+
+*/ 
+
+.datos-productos {
+    float: right;
+    padding: 20px;
+    width: 190px;
+    box-sizing: border-box;
+}
+
+/*
+
+● La clase .borrar flota a la derecha, tiene un padding superior e inferior de 0 px y de
+5px a derecha e izquierda, tiene un borde sólido de 1px de color negro, tiene un
+border-radius de 5 px, un margen superior de -10 px y un margen izquierdo de 10
+px.
+*/ 
+
+.borrar{
+    float: right;
+    padding: 0 5px;
+    border: solid 1px black;
+    border-radius: 5px;
+    margin-top: -10px;
+    margin-left: 10px;
+    font-size: 14px; /* Le he añadido el tamaño de la fuente para que quede igual que en la foto*/
+}
+
+/*
+
+● La clase .nombre flota a la derecha y está en negrita. */ 
+
+.nombre{
+    float: right;
+    font-weight: bold;
+    font-size: 12px; /* Le he añadido el tamaño de la fuente para que quede igual que en la foto*/
+    margin-bottom: 5px; /* Le he añadido un margen inferior para que quede igual que en la foto*/
+}
+
+/*
+
+● La clase .precio flota a la derecha tiene un color de texto de #666, un tamaño de
+fuente de 12px y un margen superior e inferior de 5px, recuerda que los elementos
+anteriores son floats y que si no ponemos clear:both; quedarán pegados a los
+anteriores en vez de en el lugar que queremos (el elemento es movido hacia abajo
+para limpiar elementos flotantes).
+*/
+
+.precio{
+    float: right;
+    color: #666;
+    font-size: 12px; /* Le he bajado dos pixeles para que sea igual que en la foto*/
+    clear: both;
+    margin-bottom: 5px; /* Le he añadido un margen inferior para que quede igual que en la foto*/
+}
+
+/*
+● La clase .colores debe tener también clear:both por el mismo motivo que la clase
+precio.
+*/ 
+
+.colores{
+    clear: both;
+}
+
+/*
+
+● La etiqueta <li> debe tener un ancho de 20px y un alto de 20px,
+display:inline-block (para que tenga en cuenta los valores de width y height que se
+asignen. Prueba a modificarlo por display:inline y verás que con esa propiedad no
+tiene en cuenta los valores de width y height definidos), tiene un border-radius de
+5px un margen izquierdo de 5px, fondo marrón y un borde sólido de 1px de color
+negro.*/
+
+li{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border-radius: 12.5px;
+    margin-left: 5px;
+    background-color: burlywood;
+    border: 1px solid black;
+}

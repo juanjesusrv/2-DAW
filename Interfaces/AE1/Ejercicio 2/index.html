@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creación de una tabla de contenido</title>
+    <style>
+        tr{
+            border: 1px solid black;
+        }
+        th, td{
+            border: 1px solid black;
+            padding: 5px;
+        }
+        tfoot{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <caption>Contenido del Libro</caption>
+        <colgroup>
+            <col style="width: 10%;">
+            <col style="width: 60%;">
+            <col style="width: 30%;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Capítulo</th>
+                <th>Titulo del Capítulo</th>
+                <th>Páginas</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td rowspan="3">1</td>
+                <td>Introducción</td>
+                <td>1-5</td>
+            </tr>
+            <tr>
+                <td>Primeros pasos</td>
+                <td>6-12</td>
+            </tr>
+            <tr>
+                <td>Conceptos básicos</td>
+                <td>13-20</td>
+            </tr>
+
+
+
+            <tr>
+                <td rowspan="2">2</td>
+                <td>Avanzado</td>
+                <td>21-35</td>
+            </tr>
+            <tr>
+                <td>Ejemplos Prácticos</td>
+                <td>36-45</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Conclusiones</td>
+                <td>46-50</td>
+            </tr>
+            <tr>
+                <td colspan="2">Bibliografía</td>
+                <td>51-55</td>
+            </tr>
+            <tfoot>
+                <tr>
+                    <td colspan="2">Total de Páginas</td>
+                    <td>50</td>
+                </tr>
+        </tbody>
+    </table>
+</body>
+</html>

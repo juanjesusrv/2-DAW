@@ -1,0 +1,89 @@
+/** 
+● Estilos generales:
+    ○ Utiliza la fuente «Arial» para todo el documento.
+    ○ Centra el texto horizontalmente en todos los elementos.
+
+*/ 
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+/*
+● Estilos de la tabla:
+    ○ Establece un ancho del 80% para la tabla, de manera que ocupe el 80% del ancho disponible en la ventana.
+    ○ Centra la tabla horizontalmente con un margen superior de 20 píxeles.
+    ○ Coloca el título en la parte inferior de la tabla.
+
+*/ 
+.styled-table {
+    width: 80%;
+    margin: 20px auto;
+    caption-side: bottom;
+    border-collapse: collapse;
+}
+/*
+● Estilos del título de la tabla:
+    ○ Utiliza un tamaño de fuente de 20 píxeles.
+    ○ Añade un espacio de 10 píxeles alrededor del título.
+
+*/ 
+caption {
+    font-size: 20px;
+    padding: 10px;
+}
+/*
+● Estilos de las celdas de encabezado (th) y de datos (td):
+    ○ Añade un espacio de 10 píxeles alrededor de todas las celdas.
+    ○ Establece un fondo azul (#009688) para las celdas de encabezado con texto blanco (#fff).
+    ○ Agrega un borde sólido de 1 píxel con color gris claro (#ddd) a todas las celdas.
+
+*/ 
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+
+}
+th {
+    background-color: #009688;
+    color: #fff;
+}
+
+
+/*
+● Estilos para filas impares del cuerpo de la tabla:
+     Aplica un fondo gris claro (#f2f2f2) a las filas impares del cuerpo de la tabla.
+
+*/ 
+
+tr:nth-child(odd) {
+
+    /* nth-child, seleccionar todos los hijos*/
+    /* Con Odd se seleccionan todos los IMPARES, para los pares tendría que poner even*/
+    background-color: #f2f2f2;
+}
+
+/*
+● Estilo al pasar el cursor sobre una fila del cuerpo de la tabla:
+    ○ Cambia el fondo de la fila a un tono de verde claro (#c7e2e0) al pasar el cursor sobre ella.
+
+*/
+tr:hover td {
+    background-color: #c7e2e0;
+}
+/*
+● Estilo para la tercera columna (Precio) de las filas del cuerpo de la tabla:
+    ○ Agrega el símbolo del euro (€) después de los valores en la tercera columna
+(Precio) de las filas del cuerpo de la tabla. */
+
+td:nth-child(3):after {
+    content: "€";
+}
+
+
+
+
+
+
+
+
+

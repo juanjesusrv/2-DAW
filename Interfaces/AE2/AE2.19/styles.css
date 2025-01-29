@@ -1,0 +1,31 @@
+/* 
+● Utiliza un selector de atributos para seleccionar todos los elementos que tengan el
+atributo personalizado “fruta”. Estiliza estos elementos con un fondo de color verde
+claro y un texto de color blanco. */
+
+li[comida = "fruta"] {
+    background-color: lightgreen;
+    color: white;
+}
+
+/*
+● Utiliza otro selector de atributos para seleccionar todos los elementos que tengan el
+atributo personalizado “verdura”. Estiliza estos elementos con un fondo de color
+naranja y un texto de color negro.*/
+
+li[comida = "verdura"] {
+    background-color: orange;
+}
+
+
+
+ul li::before {
+
+    content: "• ";
+    color: black;
+    
+}
+
+li {
+    list-style: none;
+}

@@ -1,0 +1,32 @@
+
+$colors: ( // Definir los colores en un mapa 
+  primary: #3498db, 
+  accept: #27ae60, 
+  cancel: #e74c3c
+);
+
+// Crear un mixin para los estilos de los botones (Un mixin es un conjunto de estilos que se pueden reutilizar en diferentes partes del código)
+@mixin button-styles {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  transition: background-color 0.3s;
+  border: none;
+}
+
+button { // Estilos de los botones
+  @include button-styles; // Incluir el mixin de los estilos de los botones
+  &:hover { // Estilos al pasar el mouse sobre el botón
+    filter: brightness(90%);
+  }
+  &.primary { // Estilos del botón con la clase primary
+    background-color: map-get($colors, primary);
+  }
+  &.accept { // Estilos del botón con la clase accept
+    background-color: map-get($colors, accept);
+  }
+  &.cancel { // Estilos del botón con la clase cancel
+    background-color: map-get($colors, cancel);
+  }
+}

@@ -1,0 +1,29 @@
+.cta-container {
+    background-image: url("restaursnte.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: center;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.cta-text {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+button.cta-button {
+    background-color: #626bb2;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+}

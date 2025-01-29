@@ -1,0 +1,89 @@
+.menu {
+    display: block;
+    position: relative;
+    height: 76px;
+    width: 120px;
+    margin: 0;
+    overflow: hidden;
+}
+  
+.menu.servicios {
+    border-top: orange 0.3em solid;
+}
+
+.menu.recursos {
+    border-top: red 0.3em solid;
+}
+  
+.menu.proyectos {
+    border-top: green 0.3em solid;
+}
+  
+.menu.contacto {
+    border-top: purple 0.3em solid;
+}
+  
+.menu > span{ 
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 0%;
+    transition: 0.5s ease-in-out;
+    -webkit-transition: 0.5s ease-in-out;
+}
+  
+.menu:after, .menu > span > span {
+    display: block;
+    text-align: center;
+    border-radius: 0em;
+    padding: 2em 0 1.5em;
+}
+  
+.menu:after {
+    content: attr(data-title);
+    width: 100%;
+    background: #000;
+    color: #fff; 
+}
+  
+.menu > span > span {
+    width: 120px;
+    color: #fff;
+}
+  
+.menu.servicios > span > span {
+    background: orange;
+    color: black;
+}
+  
+.menu.proyectos > span > span {
+    background: green;
+    color: black;
+}
+  
+.menu.recursos > span > span {
+    background: red;
+    color: black;
+}
+  
+.menu.contacto > span > span {
+    background: purple;
+    color: black;
+}
+
+.menu:hover > span {
+    height: 100%; 
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li a {
+  display: inline;
+  float: left;
+  text-decoration: none;
+  font-family: sans;
+}

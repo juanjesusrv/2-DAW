@@ -1,0 +1,38 @@
+.botones{
+    padding: 10px 20px;
+    border: none;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+#btn {
+    background-color: #3498db;
+    color: white;
+}
+
+#btn2 {
+    border: 2px solid #3498db;
+    background-color: transparent;
+    color: #3498db;
+}
+
+#btn3 {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.botones:hover{
+    transform: matrix(1.1, 0, 0, 1.1, 0, 0);
+}
+
+#btn:hover {
+    cursor: crosshair;
+}
+
+#btn2:hover {
+    cursor: pointer;
+}
+
+#btn3:hover {
+    cursor: help;
+}

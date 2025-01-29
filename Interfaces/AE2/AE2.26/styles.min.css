@@ -1,0 +1,74 @@
+.contenedor {
+  display: flex;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+.container:nth-child(1) {
+  background-color: #3498db;
+}
+.container:nth-child(1):hover {
+  background-color: rgb(33.1380753138, 125.1882845188, 186.8619246862);
+}
+.container:nth-child(2) {
+  background-color: #27ae60;
+}
+.container:nth-child(2):hover {
+  background-color: rgb(29.661971831, 132.338028169, 73.014084507);
+}
+.container:nth-child(3) {
+  background-color: #e74c3c;
+}
+.container:nth-child(3):hover {
+  background-color: rgb(213.698630137, 43.8356164384, 26.301369863);
+}
+.container:nth-child(4) {
+  background-color: #9b59b6;
+}
+.container:nth-child(4):hover {
+  background-color: rgb(127.949790795, 67.1966527197, 152.8033472803);
+}
+.container:nth-child(5) {
+  background-color: #f1c40f;
+}
+.container:nth-child(5):hover {
+  background-color: rgb(193.7007874016, 157.3818897638, 11.2992125984);
+}
+.container:nth-child(6) {
+  background-color: #2ecc71;
+}
+.container:nth-child(6):hover {
+  background-color: rgb(36.616, 162.384, 89.948);
+}
+.container:nth-child(7) {
+  background-color: #e67e22;
+}
+.container:nth-child(7):hover {
+  background-color: rgb(191.3536585366, 101.3048780488, 21.6463414634);
+}
+.container:nth-child(8) {
+  background-color: #1abc9c;
+}
+.container:nth-child(8):hover {
+  background-color: rgb(19.8037383178, 143.1962616822, 118.8224299065);
+}
+.container:nth-child(9) {
+  background-color: #34495e;
+}
+.container:nth-child(9):hover {
+  background-color: rgb(33.8356164384, 47.5, 61.1643835616);
+}
+.container:nth-child(10) {
+  background-color: #d35400;
+}
+.container:nth-child(10):hover {
+  background-color: rgb(160, 63.6966824645, 0);
+}

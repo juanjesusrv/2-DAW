@@ -1,0 +1,91 @@
+\hypertarget{classRestaurante}{}\doxysection{Restaurante Class Reference}
+\label{classRestaurante}\index{Restaurante@{Restaurante}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRestaurante_a43d2329dd284ea4072ac7d9819597e5d}{\+\_\+\+\_\+construct}} (\$nombre)
+\item 
+\mbox{\hyperlink{classRestaurante_ac58ede657af870f1422a7a91d42a72a5}{agregar\+Mesa}} (\mbox{\hyperlink{classMesa}{Mesa}} \$mesa)
+\item 
+\mbox{\hyperlink{classRestaurante_aa11bd0e626da0be5d201877d32abac4b}{mostrar\+Mesas\+Disponibles}} ()
+\item 
+\mbox{\hyperlink{classRestaurante_a1df069ba726280dabb334475978ae72f}{hacer\+Reserva}} (\mbox{\hyperlink{classCliente}{Cliente}} \$cliente, \$capacidad\+Requerida, Date\+Time \$fecha\+Hora)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classRestaurante_a9268d83fd45ad7812bddbbdb3646db44}\label{classRestaurante_a9268d83fd45ad7812bddbbdb3646db44}} 
+string {\bfseries \$nombre}
+\item 
+\mbox{\Hypertarget{classRestaurante_a048c23e187a3cff2c6ee7c0662423b5b}\label{classRestaurante_a048c23e187a3cff2c6ee7c0662423b5b}} 
+array {\bfseries \$mesas}
+\item 
+\mbox{\Hypertarget{classRestaurante_a7c136d5cbf344a09c6ab8c49a182c1e1}\label{classRestaurante_a7c136d5cbf344a09c6ab8c49a182c1e1}} 
+array {\bfseries \$reservas}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase para representar un restaurante. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRestaurante_a43d2329dd284ea4072ac7d9819597e5d}\label{classRestaurante_a43d2329dd284ea4072ac7d9819597e5d}} 
+\index{Restaurante@{Restaurante}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Restaurante@{Restaurante}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily Restaurante\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$nombre }\end{DoxyParamCaption})}
+
+Constructor de la clase. 
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$nombre} & Nombre del restaurante. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRestaurante_ac58ede657af870f1422a7a91d42a72a5}\label{classRestaurante_ac58ede657af870f1422a7a91d42a72a5}} 
+\index{Restaurante@{Restaurante}!agregarMesa@{agregarMesa}}
+\index{agregarMesa@{agregarMesa}!Restaurante@{Restaurante}}
+\doxysubsubsection{\texorpdfstring{agregarMesa()}{agregarMesa()}}
+{\footnotesize\ttfamily Restaurante\+::agregar\+Mesa (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMesa}{Mesa}}}]{\$mesa }\end{DoxyParamCaption})}
+
+Agrega una mesa al restaurante. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\hyperlink{classMesa}{Mesa}} & {\em \$mesa} & \mbox{\hyperlink{classMesa}{Mesa}} a agregar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRestaurante_a1df069ba726280dabb334475978ae72f}\label{classRestaurante_a1df069ba726280dabb334475978ae72f}} 
+\index{Restaurante@{Restaurante}!hacerReserva@{hacerReserva}}
+\index{hacerReserva@{hacerReserva}!Restaurante@{Restaurante}}
+\doxysubsubsection{\texorpdfstring{hacerReserva()}{hacerReserva()}}
+{\footnotesize\ttfamily Restaurante\+::hacer\+Reserva (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCliente}{Cliente}}}]{\$cliente,  }\item[{}]{\$capacidad\+Requerida,  }\item[{Date\+Time}]{\$fecha\+Hora }\end{DoxyParamCaption})}
+
+Realiza una reserva en el restaurante. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\hyperlink{classCliente}{Cliente}} & {\em \$cliente} & \mbox{\hyperlink{classCliente}{Cliente}} que realiza la reserva. \\
+\hline
+int & {\em \$capacidad\+Requerida} & Capacidad requerida para la reserva. \\
+\hline
+Date\+Time & {\em \$fecha\+Hora} & Fecha y hora de la reserva. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classReserva}{Reserva}}. \mbox{\hyperlink{classReserva}{Reserva}} realizada. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRestaurante_aa11bd0e626da0be5d201877d32abac4b}\label{classRestaurante_aa11bd0e626da0be5d201877d32abac4b}} 
+\index{Restaurante@{Restaurante}!mostrarMesasDisponibles@{mostrarMesasDisponibles}}
+\index{mostrarMesasDisponibles@{mostrarMesasDisponibles}!Restaurante@{Restaurante}}
+\doxysubsubsection{\texorpdfstring{mostrarMesasDisponibles()}{mostrarMesasDisponibles()}}
+{\footnotesize\ttfamily Restaurante\+::mostrar\+Mesas\+Disponibles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Muestra las mesas disponibles del restaurante. \begin{DoxyReturn}{Returns}
+array. Mesas disponibles. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+html.\+php\end{DoxyCompactItemize}

@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    background-color: #EDEEEE;
+    color: orange;
+    border-bottom: 3px solid #4caf50;
+    padding: 30px;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+img {
+    float: left;
+    padding: 1.2em;
+}
+
+img:hover{
+    background-color: #e8f1f4;
+}

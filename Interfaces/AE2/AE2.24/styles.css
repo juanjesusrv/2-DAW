@@ -1,0 +1,66 @@
+.leones{
+    width: 260px;
+    height: 230px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.tarjetas{
+    border: solid black 1px;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    display: inline-block;
+}
+
+#sombra {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    
+}
+
+#gradiente {
+    background: linear-gradient(#3498db, #1f587d);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+#leon2 {
+    filter: brightness(0.8) contrast(1.2);
+}
+
+#leon3 {
+    filter: invert() blur(1px);
+}
+
+#tooltip {
+    background-color: brown; 
+    color: white; 
+    height: 50px; 
+    overflow-y: auto; 
+    border-radius: 6px; 
+    padding: 5px;
+    visibility: hidden;
+    height: 50px;
+    width: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    transition: opacity 0.5s ease-in-out;
+
+}
+
+#icono {
+    cursor: pointer;
+}
+#icono:hover + #tooltip {
+    display: block;
+    visibility: visible;
+}
+
+
+
