@@ -36,16 +36,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("Error: Mesa fuera de rango");
                 return;
             }
-
+        
             if (nComensales < 1) {
                 this.agregarMensaje("Error: El número de comensales debe ser mayor que 0.");
                 console.log("Error: Número de comensales inválido");
                 return;
             }
-
+        
+            // Validar que no se exceda de 6 comensales
+            if (nComensales > 6) {
+                this.agregarMensaje("Error: No se pueden sentar más de 6 comensales en una mesa.");
+                console.log("Error: Más de 6 comensales en la mesa.");
+                return;
+            }
+        
             // Restar 1 al número de mesa porque los índices de los arrays comienzan desde 0
             nMesa = nMesa - 1;
-
+        
             // Intentar ocupar la mesa
             if (this.mesas[nMesa].comensales === 0 || this.mesas[nMesa].comensales == "") {
                 this.mesas[nMesa].NumeroClientes = nComensales;
@@ -58,6 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.agregarMensaje(`La mesa ${nMesa + 1} ya está ocupada.`);
             }
         }
+        
+        
 
         borrarMesa(nMesa) {
             console.log(`Intentando borrar la mesa ${nMesa}...`);
@@ -88,22 +97,59 @@ document.addEventListener("DOMContentLoaded", function () {
 
         cambiarComensales(nMesa, nComensales) {
             console.log(`Cambiando número de comensales para la mesa ${nMesa} a ${nComensales}.`);
-
+            
             // Validar que el número de mesa esté entre 1 y 18
             if (nMesa < 1 || nMesa > 18) {
                 this.agregarMensaje("Error: El número de mesa debe estar entre 1 y 18.");
                 console.log("Error: Mesa fuera de rango");
                 return;
             }
-
+        
+            // Validar que el número de comensales no sea mayor a 6
+            if (nComensales > 6 || nComensales < 1) {
+                this.agregarMensaje("Error: No se pueden tener más de 6 comensales en una mesa.");
+                console.log("Error: Más de 6 comensales en la mesa.");
+                return;
+            }
+        
             // Restar 1 al número de mesa porque los índices de los arrays comienzan desde 0
             nMesa = nMesa - 1;
-
-            // Cambiar número de comensales en la mesa
-            this.mesas[nMesa].NumeroClientes = nComensales;
+        
+            let mesa = this.mesas[nMesa];  // Obtenemos la mesa
+            if (!mesa.Clientes) { // Verificar si el array de clientes no existe
+                mesa.Clientes = []; // Si no existe, inicializarlo
+            }
+        
+            let clientesActuales = mesa.Clientes.length;  // Número actual de comensales
+        
+            // Si el número de comensales es mayor al actual, agregar clientes
+            if (nComensales > clientesActuales) {
+                for (let i = clientesActuales; i < nComensales; i++) {
+                    let nuevoCodigo = `${nMesa + 1}-${i + 1}`; // Código único para cada cliente
+                    mesa.Clientes.push(nuevoCodigo);  // Añadir al array de clientes
+                }
+            }
+            // Si el número de comensales es menor al actual, eliminar clientes
+            else if (nComensales < clientesActuales) {
+                // Eliminar los clientes excedentes
+                mesa.Clientes.splice(nComensales);  // Mantener solo los primeros nComensales
+            }
+        
+            // Actualizar los códigos de los clientes restantes, asegurando que no se repitan
+            for (let i = 0; i < nComensales; i++) {
+                mesa.Clientes[i] = `${nMesa + 1}-${i + 1}`;
+            }
+        
+            // Actualizar el número de comensales en la mesa
+            mesa.NumeroClientes = nComensales;
             console.log(`Número de comensales en la mesa ${nMesa + 1} actualizado a ${nComensales}.`);
             this.agregarMensaje(`Número de comensales en la mesa ${nMesa + 1} actualizado a ${nComensales}.`);
         }
+        
+        
+        
+        
+        
        
         verComandaMesa(nMesa) {
             console.log(`Mostrando comanda de la mesa ${nMesa}...`);
@@ -119,12 +165,14 @@ document.addEventListener("DOMContentLoaded", function () {
             nMesa = nMesa - 1;
 
             // Mostrar la comanda de la mesa
-            let comanda = this.mesas[nMesa].ComandaMesa;
-            console.log(`Comanda de la mesa ${nMesa + 1}:`, comanda);
+            console.log(`Comanda de la mesa ${nMesa + 1}:`);
             this.agregarMensaje(`Comanda de la mesa ${nMesa + 1}:`);
-            comanda.forEach(producto => {
-                console.log(`Producto: ${producto}`);
-                this.agregarMensaje(producto);
+            this.mesas[nMesa].clientes.forEach(cliente => {
+                this.agregarMensaje(`Comanda del cliente ${cliente.CodigoCliente}:`);
+                cliente.ComandaCliente.forEach(producto => {
+                    console.log(`Producto: ${producto[0]}, Precio: ${producto[1]}`);
+                    this.agregarMensaje(`${producto[0]}: ${producto[1]}€`);
+                });
             });
         }
 
@@ -175,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    class cliente {
+    class Cliente {
         constructor(cod) {
             this.codigo = cod;
             this.comandaCliente = [];
@@ -204,14 +252,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (comens > 0) {
                 for (let i = 0; i < comens; i++) {
-                    let nuevoCliente = new cliente(this.generarCodigoComensal(i));
+                    let nuevoCliente = new Cliente(this.generarCodigoComensal(i));
                     this.clientes.push(nuevoCliente);
                 }
             }
-        }
-
-        generarCodigoComensal(cod) {
-            return `${this.numMesa}-${this.comensales}-${cod + 1}`;
         }
 
         get UbicacionMesa() {
@@ -227,19 +271,28 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         set NumeroClientes(nComensales) {
-            if (nComensales > this.comensales) { // Añade objetos cliente al array
-                for (let i = this.comensales; i < nComensales; i++) {
-                    /* Coge el codigo del ultimo comensal*/
-                    let nuevoCodigo = this.clientes[this.clientes.length].CodigoCliente;
-                    let nuevoCliente = new cliente(nuevoCodigo);
+            // Si aumentamos el número de comensales
+            if (nComensales > this.comensales) {
+                for (let i = 0; i < nComensales; i++) {
+                    if (i >= this.comensales) {
+                        let nuevoCliente = new Cliente(this.generarCodigoComensal(i));
+                        this.clientes.push(nuevoCliente);
+                    } else {
+                        this.clientes[i].codigo = this.generarCodigoComensal(i);
+                    }
                 }
-            } else { // Elimina objetos cliente del array
-                for (let i = this.comensales; i > nComensales; i--) { // Elimina los objetos cliente del array
-                    this.clientes.pop(); // Elimina el último elemento del array
-                }
+            } else if (nComensales < this.comensales) {
+                // Si disminuimos el número de comensales, simplemente eliminamos los clientes adicionales
+                this.clientes = this.clientes.slice(0, nComensales);
             }
-
+        
+            // Actualizamos la cantidad de comensales
             this.comensales = nComensales;
+        }
+
+        generarCodigoComensal(cod) {
+
+            return `${this.numMesa}-${cod + 1}`;
         }
 
         BorrarMesa() {
@@ -329,16 +382,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     document.getElementById("añadirPlato").addEventListener("click", function() {
+
+        let opciones = "Las opciones disponibles son:\n";
+        productos.forEach(producto => {
+            opciones += `- ${producto[0]}\n`;
+        });
+
         console.log("Botón 'Añadir plato' clickeado");
     
         // Pedir al usuario el número de mesa
         let mesa = prompt("Introduce el número de mesa:");
     
         // Pedir al usuario el código del cliente
-        let codCliente = prompt("Introduce el código del cliente (por ejemplo, 1-3-2):");
+        let codCliente = prompt("Introduce el código del cliente (por ejemplo, 1-1):");
     
         // Pedir al usuario el nombre del plato que quiere añadir
-        let plato = prompt("Introduce el nombre del plato (por ejemplo, 'zamburiñas'):");
+        let plato = prompt(opciones);
     
         // Convertir el número de mesa a entero
         mesa = parseInt(mesa);
