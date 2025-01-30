@@ -347,33 +347,98 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Eventos para los botones
     document.getElementById("ocuparMesa").addEventListener("click", function () {
-        let mesa = prompt("Introduce el número de mesa que quieres ocupar");
+        let msj = `Las mesas disponibles son: \n`;
+        for (let i = 0; i < 18; i++) {
+            if (mesas.mesas[i].comensales === 0) {
+                msj += `Mesa ${i + 1}\n`;
+            }
+        }
+
+        let mesa = prompt("Introduce el número de mesa que quieres ocupar" + "\n" + msj);
+        if (isNaN(mesa)) {
+            alert("Número de mesa no válido. Debe ser un número.");
+            return;
+        } 
+
         let comensales = prompt("Introduce el número de comensales");
+        if (isNaN(comensales)) {
+            alert("Número de comensales no válido. Debe ser un número.");
+            return;
+        }
 
         console.log(`Botón 'Ocupar Mesa' presionado. Mesa: ${mesa}, Comensales: ${comensales}`);
         mesas.ocuparMesa(mesa, comensales);
     });
 
     document.getElementById("borrarMesa").addEventListener("click", function () {
+
+        if (mesas.MesasOcupadas === 0) {
+            alert("No hay mesas ocupadas.");
+            return;
+        }
+
         let mesa = prompt("Introduce el número de mesa que deseas pagar");
         console.log(`Botón 'Pagar Mesa' presionado. Mesa: ${mesa}`);
         mesas.borrarMesa(mesa);
     });
 
     document.getElementById("cambiarComensales").addEventListener("click", function () {
+
+        if (mesas.MesasOcupadas === 0) {
+            alert("No hay mesas ocupadas.");
+            return;
+        }
+
         let mesa = prompt("Introduce el número de mesa para cambiar el número de comensales");
-        let comensales = prompt("Introduce el nuevo número de comensales");
+        if (isNaN(mesa)) {
+            alert("Número de mesa no válido. Debe ser un número.");
+            return;
+        } 
+
+        if (mesas.mesas[mesa - 1].comensales === 0) {
+            alert("La mesa seleccionada no está ocupada.");
+            let opcion = confirm("¿Desea ocupar la mesa?");
+            if (opcion) {
+                let comensales = prompt("Introduce el número de comensales (entre 1 y 6)");
+                if (isNaN(comensales)) {
+                    alert("Número de comensales no válido. Debe ser un número.");
+                    return;
+                }
+                mesas.ocuparMesa(mesa, comensales);
+                return;
+            }
+        }
+
+
+        let comensales = prompt("Introduce el nuevo número de comensales (entre 1 y 6)");
+        if (isNaN(comensales)) {
+            alert("Número de comensales no válido. Debe ser un número.");
+            return;
+        }
+       
         console.log(`Botón 'Cambiar Comensales' presionado. Mesa: ${mesa}, Comensales: ${comensales}`);
         mesas.cambiarComensales(mesa, comensales);
     });
 
     document.getElementById("verComandaMesa").addEventListener("click", function () {
+
+        if (mesas.MesasOcupadas === 0) {
+            alert("No hay mesas ocupadas.");
+            return;
+        }
+
         let mesa = prompt("Introduce el número de mesa para ver la comanda completa");
         console.log(`Botón 'Ver Comanda Mesa' presionado. Mesa: ${mesa}`);
         mesas.verComandaMesa(mesa);
     });
 
     document.getElementById("verComandaCliente").addEventListener("click", function () {
+
+        if (mesas.MesasOcupadas === 0) {
+            alert("No hay mesas ocupadas.");
+            return;
+        }
+
         let mesa = prompt("Introduce el número de mesa");
         let clienteID = prompt("Introduce el ID del cliente");
         console.log(`Botón 'Ver Comanda Cliente' presionado. Mesa: ${mesa}, Cliente ID: ${clienteID}`);
@@ -382,6 +447,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     document.getElementById("añadirPlato").addEventListener("click", function() {
+
+        if (mesas.MesasOcupadas === 0) {
+            alert("No hay mesas ocupadas.");
+            return;
+        }
 
         let opciones = "Las opciones disponibles son:\n";
         productos.forEach(producto => {
@@ -422,6 +492,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.getElementById("verClientesMesa").addEventListener("click", function () {
+
+        if (mesas.MesasOcupadas === 0) {
+            alert("No hay mesas ocupadas.");
+            return;
+        }
+
         let mesa = prompt("Introduce el número de la mesa para ver sus clientes:");
         mesa = parseInt(mesa);
     
