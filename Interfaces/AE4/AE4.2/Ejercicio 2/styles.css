@@ -1,0 +1,63 @@
+/* styles.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container {
+    text-align: center;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#audioMessage {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.hidden {
+    display: none; /* Oculta el mensaje cuando no hay audio */
+}
+
+/* Animación tipo carrusel */
+#audioMessage span {
+    display: inline-block; /* Texto animado */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    overflow: hidden; /* Oculta el contenido que sale del contenedor */
+}
+
+/* Keyframes de animación */
+@keyframes slideText {
+    0% {
+        transform: translateX(100%); /* Comienza fuera del contenedor (derecha) */
+        opacity: 0; /* Invisibilidad al inicio */
+    }
+    20% {
+        opacity: 1; /* Se hace visible al entrar */
+    }
+    80% {
+        opacity: 1; /* Permanece visible mientras se desplaza */
+    }
+    100% {
+        transform: translateX(-100%); /* Sale del contenedor */
+        opacity: 0; /* Se desvanece al salir */
+    }
+}
