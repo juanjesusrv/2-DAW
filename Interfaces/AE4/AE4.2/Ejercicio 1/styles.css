@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    background-color: white;
+    color: black;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  .controls {
+    margin-top: 10px;
+  }
+  
+  button{
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  
+  button:hover {
+    background-color: #2980b9;
+  }
+  
+  button:disabled {
+    background-color: #95a5a6;
+    color: black;
+    cursor: not-allowed;
+  }
+  
+  .dark-mode {
+    background-color: black;
+    color: white;
+  }
+  
