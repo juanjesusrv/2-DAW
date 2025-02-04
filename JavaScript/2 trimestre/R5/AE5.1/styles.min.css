@@ -1,0 +1,86 @@
+body {
+  background-color: #f2f2f2;
+  font-family: Arial;
+  text-align: center;
+}
+
+h1 {
+  color: #3498db;
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin: 10px;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+
+.product {
+  background-color: white;
+  border-radius: 5px;
+  margin: 10px;
+  border: none;
+}
+
+.product:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+.important-text {
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.primary-button {
+  background-color: #3498db;
+  color: white;
+}
+.primary-button:hover {
+  background-color: rgb(33.1380753138, 125.1882845188, 186.8619246862);
+}
+
+.secondary-button {
+  background-color: #2ecc71;
+  color: white;
+}
+.secondary-button:hover {
+  background-color: rgb(36.616, 162.384, 89.948);
+}
+
+.buy-button {
+  background-color: #f39c12;
+  color: white;
+}
+.buy-button:hover {
+  background-color: rgb(199.8795180723, 126.5060240964, 10.1204819277);
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.centered > * {
+  margin-right: 20px;
+}
+.centered > *:last-child {
+  margin-right: 0;
+}

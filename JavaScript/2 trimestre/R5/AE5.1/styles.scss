@@ -1,0 +1,101 @@
+//Variables
+
+$primary-color: #3498db;
+$secondary-color: #e74c3c;
+$font-family: Arial;
+$base-font-size: 16px;
+
+// Estilos
+
+body {
+  background-color: #f2f2f2;
+  font-family: $font-family;
+  text-align: center;
+}
+
+h1 {
+  color: $primary-color;
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin: 10px;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+
+.product {
+  background-color: white;
+  border-radius: 5px;
+  margin: 10px;
+  border: none;
+  
+}
+
+.product:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+.important-text {
+  font-weight: bold;
+  color: $secondary-color;
+}
+
+$button-styles: (
+  primary-button: $primary-color,
+  secondary-button: #2ecc71,
+  buy-button: #f39c12
+);
+
+@mixin center-element {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+
+
+@for $i from 1 through length($button-styles) {
+
+  $button-name: nth(map-keys($button-styles), $i); // Obtiene el nombre del botón
+  $button-color: map-get($button-styles, $button-name); // Obtiene el color del botón
+
+  .#{$button-name} { // Crea la clase del botón
+    background-color: $button-color; // Establece el color del botón
+    color: white; // Establece el color del texto del botón
+
+    &:hover { // Establece el color del botón al pasar el ratón
+      background-color: darken($button-color, 10%); 
+    }
+
+  }
+}
+
+.centered {
+  @include center-element;
+  flex-wrap: wrap;
+
+  & > * {
+    margin-right: 20px;
+  } 
+
+  & > *:last-child {
+    margin-right: 0;
+  }
+}

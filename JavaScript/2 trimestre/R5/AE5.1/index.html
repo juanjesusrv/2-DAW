@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.min.css">
+    <title>AE2.27 SASS: KIOSKO FERNANDO. AHORA A DOMICILIO</title>
+    <script src="validacion.js" defer></script>
+</head>
+<body>
+    <h1>Kiosko Fernando</h1>
+    <p>Nuestras delicatessen ahora te las llevamos a casa.</p>
+    <button class="primary-button">Ver Menú</button>
+    <button class="secondary-button">Registrarse</button>
+    <h2>Los más demandados</h2>
+    <div class="product">
+        <img src="https://cdn-icons-png.flaticon.com/512/468/468339.png" alt="Gambas">
+        <h3>Gamba roja</h3>
+        <p>Gamba roja de Garrucha (150 gramos).</p>
+        <p class="important-text">3,50 €</p>
+        <button class="buy-button">Comprar</button>
+    </div>
+    <div class="product">
+        <img src="https://cdn-icons-png.flaticon.com/512/1137/1137928.png" alt="Mejillones">
+        <h3>Mejillones</h3>
+        <p>Mejillones del Cantábrico (2 unidades).</p>
+        <p class="important-text">2,00 €</p>
+        <button class="buy-button">Comprar</button>
+    </div>
+    <div class="product centered">
+        <img src="https://cdn-icons-png.flaticon.com/512/3751/3751463.png" alt="Prod 3">
+        <h3>Zamburiñas</h3>
+        <p>Zamburiñas gallegas (2 unidades)</p>
+        <p class="important-text"> 4,70 €</p>
+        <button class="buy-button">Comprar</button>
+    </div>
+    <div>
+        <form action="procesar.php" method="post" id="miFormulario">
+            <table>
+                <tr>
+                    <td><label for="nombre"></label></td>
+                    <td><input type="text" id="nombre" name="nombre" placeholder="Nombre" required></td>
+                </tr>
+                <tr>
+                    <td><label for="apellido"></label></td>
+                    <td><input type="text" id="apellido" name="apellido" placeholder="Primer apellido" required></td>
+                </tr>
+                <tr>
+                    <td><label for="apellido2"></label></td>
+                    <td><input type="text" id="apellido2" name="apellido2" placeholder="Segundo apellido"></td>
+                </tr>
+                <tr>
+                    <td><label for="telefono"></label></td>
+                    <td><input type="tel" id="telefono" name="telefono" placeholder="Teléfono de contacto" required></td>
+                </tr>
+                <tr>
+                    <td><label for="email"></label></td>
+                    <td><input type="email" id="email" name="email" placeholder="Correo electrónico" required></td>
+                </tr>
+                <tr>
+                    <td><label for="direccion"></label></td>
+                    <td><input type="text" id="direccion" name="direccion" placeholder="Dirección de entrega" required></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
