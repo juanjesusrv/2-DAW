@@ -1,11 +1,17 @@
 canvas {
-    background-color: aqua;
     border: 1px solid red;
-    display: block;
-    margin: 0 auto;
 }
 
 body {
     background-color: #000;
     font-family: Arial, sans-serif;
+    display: block;
+    margin: 0;
+}
+
+.cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
