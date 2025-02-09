@@ -3,10 +3,17 @@ const KEY_LEFT = "ArrowLeft";
 const KEY_UP = "ArrowUp";
 const KEY_RIGHT = "ArrowRight";
 const KEY_DOWN = "ArrowDown";
+
+
+// Constantes para los sonidos del juego
 const S_BOCADO = "./audio/bocado.mp3";
 const S_DIR = "./audio/dir.mp3";
 const S_WIN = "./audio/win.mp3";
 const S_LOSE = "./audio/lose.mp3";
+
+// Constantes para las imagenes
+const I_MANZANA = new Image();
+I_MANZANA.src = "./img/manzana.png";
 
 // Clase Segmento para representar un cuadrado en el lienzo
 class Segmento {
@@ -35,10 +42,11 @@ class Juego {
         this.direccion = null;
         this.cuadradoRojo = this.generarCoordenadaAleatoria();
         this.cuadradosAzules = [];
-        this.puntuacion = 9;
+        this.puntuacion = 0;
         this.maxPuntuacion = 10;
         this.velocidad = 10;
         this.frameDelay = 80;
+        this.direccionCambiada = false;
     }
 
     iniciarJuego() {
@@ -48,17 +56,27 @@ class Juego {
 
     cambiarDireccion(event) {
         const key = event.code;
+    
         if ([KEY_LEFT, KEY_UP, KEY_RIGHT, KEY_DOWN].includes(key)) {
             event.preventDefault();
-
+    
+            // Reproducir sonido de dirección
             const audioDir = new Audio(S_DIR);
             audioDir.play();
-
-            if (this.direccion === KEY_LEFT && key === KEY_RIGHT) return;
-            if (this.direccion === KEY_UP && key === KEY_DOWN) return;
-            if (this.direccion === KEY_RIGHT && key === KEY_LEFT) return;
-            if (this.direccion === KEY_DOWN && key === KEY_UP) return;
+    
+            // No permitir más de un cambio de dirección por frame
+            if (this.direccionCambiada) return;
+            
+            // Evitar cambios de dirección opuestos
+            if ((this.direccion === KEY_LEFT && key === KEY_RIGHT) ||
+                (this.direccion === KEY_RIGHT && key === KEY_LEFT) ||
+                (this.direccion === KEY_UP && key === KEY_DOWN) ||
+                (this.direccion === KEY_DOWN && key === KEY_UP)) {
+                return;
+            }
+    
             this.direccion = key;
+            this.direccionCambiada = true; // Evita más de un cambio de dirección por frame
         }
     }
 
@@ -71,6 +89,7 @@ class Juego {
     }
 
     actualizar() {
+        this.direccionCambiada = false;
         this.moverCuadrado();
         this.verificarColisiones();
     }
@@ -113,12 +132,14 @@ class Juego {
             this.cuadradoRojo = this.generarCoordenadaAleatoria();
             this.generarCuadradosAzules(this.puntuacion + 1);
             this.puntuacion++;
+            document.getElementById('scoreValue').innerText = this.puntuacion;
             if (this.puntuacion >= this.maxPuntuacion) {
 
 
                 audioWin.play();
                 setTimeout(() => {
                     alert('¡Has ganado!');
+                    document.getElementById('scoreValue').innerText = this.puntuacion;
                 }, 100);
 
                 this.reiniciarJuego();
@@ -179,11 +200,11 @@ class Juego {
 
     // Pintar el lienzo
     pintarLienzo() {
-        this.context.fillStyle = "#F7F9FA";
-        this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        this.snake.forEach(segmento => segmento.dibujar(this.context));
-        this.cuadradoRojo.dibujar(this.context);
-        this.cuadradosAzules.forEach(azul => azul.dibujar(this.context));
+        this.context.fillStyle = "#F7F9FA"; // Color de fondo
+        this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);  // Rellenar el fondo
+        this.snake.forEach(segmento => segmento.dibujar(this.context)); // Dibujar la serpiente
+        this.cuadradoRojo.dibujar(this.context);  // Dibujar el cuadrado rojo
+        this.cuadradosAzules.forEach(azul => azul.dibujar(this.context)); // Dibujar los cuadrados azules
     }
 }
 
