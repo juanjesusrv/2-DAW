@@ -3,6 +3,10 @@ const KEY_LEFT = "ArrowLeft";
 const KEY_UP = "ArrowUp";
 const KEY_RIGHT = "ArrowRight";
 const KEY_DOWN = "ArrowDown";
+const S_BOCADO = "./audio/bocado.mp3";
+const S_DIR = "./audio/dir.mp3";
+const S_WIN = "./audio/win.mp3";
+const S_LOSE = "./audio/lose.mp3";
 
 // Clase Segmento para representar un cuadrado en el lienzo
 class Segmento {
@@ -29,10 +33,9 @@ class Juego {
         this.canvas.height = 480;
         this.snake = [new Segmento(this.canvas.width / 2, this.canvas.height / 2, 10, '#0f0')];
         this.direccion = null;
-        this.direccionAnterior = null;
         this.cuadradoRojo = this.generarCoordenadaAleatoria();
         this.cuadradosAzules = [];
-        this.puntuacion = 0;
+        this.puntuacion = 9;
         this.maxPuntuacion = 10;
         this.velocidad = 10;
         this.frameDelay = 80;
@@ -47,7 +50,14 @@ class Juego {
         const key = event.code;
         if ([KEY_LEFT, KEY_UP, KEY_RIGHT, KEY_DOWN].includes(key)) {
             event.preventDefault();
-            this.direccionAnterior = this.direccion;
+
+            const audioDir = new Audio(S_DIR);
+            audioDir.play();
+
+            if (this.direccion === KEY_LEFT && key === KEY_RIGHT) return;
+            if (this.direccion === KEY_UP && key === KEY_DOWN) return;
+            if (this.direccion === KEY_RIGHT && key === KEY_LEFT) return;
+            if (this.direccion === KEY_DOWN && key === KEY_UP) return;
             this.direccion = key;
         }
     }
@@ -69,42 +79,71 @@ class Juego {
         if (!this.direccion) return;
 
         let head = { ...this.snake[0] };
-        if (this.direccion === KEY_RIGHT && this.direccionAnterior !== KEY_LEFT) head.x += this.velocidad;
-        if (this.direccion === KEY_LEFT && this.direccionAnterior !== KEY_RIGHT) head.x -= this.velocidad;
-        if (this.direccion === KEY_UP && this.direccionAnterior !== KEY_DOWN) head.y -= this.velocidad;
-        if (this.direccion === KEY_DOWN && this.direccionAnterior !== KEY_UP) head.y += this.velocidad;
+        if (this.direccion === KEY_RIGHT ) head.x += this.velocidad;
+        if (this.direccion === KEY_LEFT ) head.x -= this.velocidad;
+        if (this.direccion === KEY_UP ) head.y -= this.velocidad;
+        if (this.direccion === KEY_DOWN ) head.y += this.velocidad; 
 
 
-        this.snake.unshift(new Segmento(head.x, head.y, head.size, head.color));
+        this.snake.unshift(new Segmento(head.x, head.y, head.size, head.color)); 
         this.snake.pop();
     }
 
     verificarColisiones() {
         let head = this.snake[0];
+        const audioLose = new Audio(S_LOSE);
+        const audioWin = new Audio(S_WIN);
+        
 
         // Colisión con bordes
         if (head.x < 0 || head.x >= this.canvas.width || head.y < 0 || head.y >= this.canvas.height) {
-            alert('Has perdido :(');
+            audioLose.play();
+            setTimeout(() => {
+                alert('Has perdido :(');
+            }, 100); 
             this.reiniciarJuego();
         }
 
         // Colisión con cuadrado rojo
         if (head.x === this.cuadradoRojo.x && head.y === this.cuadradoRojo.y) {
-            this.snake.push(new Segmento(head.x, head.y, head.size, head.color));
+            const audioBocado = new Audio(S_BOCADO);
+            audioBocado.play();
+            
+            this.snake.push(new Segmento(head.x - 10000, head.y - 10000, 10, '#0f0'));
             this.cuadradoRojo = this.generarCoordenadaAleatoria();
             this.generarCuadradosAzules(this.puntuacion + 1);
             this.puntuacion++;
-            this.pintarPuntuacion();
             if (this.puntuacion >= this.maxPuntuacion) {
-                alert('You are a winner!! :)');
+
+
+                audioWin.play();
+                setTimeout(() => {
+                    alert('¡Has ganado!');
+                }, 100);
+
                 this.reiniciarJuego();
             }
         }
 
+        
         // Colisión con cuadrados azules
         for (let azul of this.cuadradosAzules) {
             if (head.x === azul.x && head.y === azul.y) {
-                alert('Has perdido :(');
+                audioLose.play();
+                setTimeout(() => {
+                    alert('Has perdido :(');
+                }, 100); 
+                this.reiniciarJuego();
+            }
+        }
+
+        // Colisión con la serpiente
+        for (let i = 1; i < this.snake.length; i++) {
+            if (head.x === this.snake[i].x && head.y === this.snake[i].y) {
+                audioLose.play();
+                setTimeout(() => {
+                    alert('Has perdido :(');
+                }, 100);
                 this.reiniciarJuego();
             }
         }

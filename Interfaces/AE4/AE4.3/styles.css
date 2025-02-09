@@ -3,6 +3,8 @@ body {
     font-family: Arial, sans-serif;
     display: block;
     margin: 0;
+    background-image: url('./img/snake.jpg');
+    background-size: cover;
 }
 
 canvas {
