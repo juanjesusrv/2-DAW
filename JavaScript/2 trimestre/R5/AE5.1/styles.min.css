@@ -84,3 +84,10 @@ h3 {
 .centered > *:last-child {
   margin-right: 0;
 }
+
+.cont-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
