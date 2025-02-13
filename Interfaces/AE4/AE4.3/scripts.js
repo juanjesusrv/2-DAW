@@ -18,6 +18,7 @@ I_MANZANA.src = "./img/manzana.png";
 const I_PILAR = new Image();
 I_PILAR.src = "./img/pilar.png";
 
+
 // Clase Segmento para representar un cuadrado en el lienzo
 class Segmento {
     constructor(x, y, size, color) {
@@ -41,7 +42,7 @@ class Juego {
         this.context = this.canvas.getContext('2d');
         this.canvas.width = 600;
         this.canvas.height = 480;
-        this.snake = [new Segmento(this.canvas.width / 2, this.canvas.height / 2, 20, '#0f0')];
+        this.snake = [new Segmento(this.canvas.width / 2, this.canvas.height / 2, 15, '#0f0')];
         this.direccion = null;
         this.cuadradoRojo = this.generarCoordenadaAleatoria();
         this.cuadradosAzules = [];
@@ -108,7 +109,7 @@ class Juego {
 
 
         this.snake.unshift(new Segmento(head.x, head.y, head.size, head.color)); 
-        this.snake.pop();
+        this.snake.pop(); 
     }
 
     verificarColisiones() {
@@ -123,6 +124,7 @@ class Juego {
             setTimeout(() => {
                 alert('Has perdido :(');
             }, 200); 
+            document.getElementById('scoreValue').innerText = 0;
             this.reiniciarJuego();
         }
 
@@ -132,7 +134,7 @@ class Juego {
             const audioBocado = new Audio(S_BOCADO);
             audioBocado.play();
             
-            this.snake.push(new Segmento(head.x - 20000, head.y - 20000, 20, '#0f0'));
+            this.snake.push(new Segmento(head.x - 20000, head.y - 20000, 15, '#0f0'));
             this.cuadradoRojo = this.generarCoordenadaAleatoria();
             this.generarCuadradosAzules(this.puntuacion + 1);
             this.puntuacion++;
@@ -143,9 +145,9 @@ class Juego {
                 audioWin.play();
                 setTimeout(() => {
                     alert('¡Has ganado!');
-                    document.getElementById('scoreValue').innerText = this.puntuacion;
                 }, 200);
 
+                document.getElementById('scoreValue').innerText = 0;
                 this.reiniciarJuego();
             }
         }
@@ -158,6 +160,7 @@ class Juego {
                 setTimeout(() => {
                     alert('Has perdido :(');
                 }, 200); 
+                document.getElementById('scoreValue').innerText = 0;
                 this.reiniciarJuego();
             }
         }
@@ -169,6 +172,7 @@ class Juego {
                 setTimeout(() => {
                     alert('Has perdido :(');
                 }, 200);
+                document.getElementById('scoreValue').innerText = 0;
                 this.reiniciarJuego();
             }
         }
@@ -178,6 +182,11 @@ class Juego {
 
         let x = Math.floor(Math.random() * this.canvas.width / 20) * 20;
         let y = Math.floor(Math.random() * this.canvas.height /20) * 20;
+
+        while (this.snake.some(segmento => segmento.x === x && segmento.y === y)) {
+            x = Math.floor(Math.random() * this.canvas.width / 20) * 20;
+            y = Math.floor(Math.random() * this.canvas.height / 20) * 20;
+        }
 
         return new Segmento(x, y, 20, '#f00');
     }
@@ -197,7 +206,7 @@ class Juego {
 
     // Reiniciar el juego
     reiniciarJuego() {
-        this.snake = [new Segmento(this.canvas.width / 2, this.canvas.height / 2, 20, '#0f0')];
+        this.snake = [new Segmento(this.canvas.width / 2, this.canvas.height / 2, 15, '#0f0')];
         this.direccion = null;
         this.cuadradoRojo = this.generarCoordenadaAleatoria();
         this.cuadradosAzules = [];
@@ -208,7 +217,16 @@ class Juego {
     pintarLienzo() {
         this.context.fillStyle = "#F7F9FA"; // Color de fondo
         this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);  // Rellenar el fondo
-        this.snake.forEach(segmento => segmento.dibujar(this.context)); // Dibujar la serpiente
+        for (let segmento of this.snake) {
+            if (segmento === this.snake[0]) {
+                segmento.color = '#0f0';
+            }  else {
+                segmento.color = 'green';
+            }
+
+            segmento.dibujar(this.context);
+
+        }
         this.context.drawImage(I_MANZANA, this.cuadradoRojo.x, this.cuadradoRojo.y, 20, 20);
         this.cuadradosAzules.forEach(azul => this.context.drawImage(I_PILAR, azul.x, azul.y, 20, 20));
     }
