@@ -15,6 +15,9 @@ const S_LOSE = "./audio/lose.mp3";
 const I_MANZANA = new Image();
 I_MANZANA.src = "./img/manzana.png";
 
+const I_PILAR = new Image();
+I_PILAR.src = "./img/pilar.png";
+
 // Clase Segmento para representar un cuadrado en el lienzo
 class Segmento {
     constructor(x, y, size, color) {
@@ -38,14 +41,14 @@ class Juego {
         this.context = this.canvas.getContext('2d');
         this.canvas.width = 600;
         this.canvas.height = 480;
-        this.snake = [new Segmento(this.canvas.width / 2, this.canvas.height / 2, 10, '#0f0')];
+        this.snake = [new Segmento(this.canvas.width / 2, this.canvas.height / 2, 20, '#0f0')];
         this.direccion = null;
         this.cuadradoRojo = this.generarCoordenadaAleatoria();
         this.cuadradosAzules = [];
         this.puntuacion = 0;
         this.maxPuntuacion = 10;
-        this.velocidad = 10;
-        this.frameDelay = 80;
+        this.velocidad = 20;
+        this.frameDelay = 100;
         this.direccionCambiada = false;
     }
 
@@ -119,16 +122,17 @@ class Juego {
             audioLose.play();
             setTimeout(() => {
                 alert('Has perdido :(');
-            }, 100); 
+            }, 200); 
             this.reiniciarJuego();
         }
 
         // Colisión con cuadrado rojo
-        if (head.x === this.cuadradoRojo.x && head.y === this.cuadradoRojo.y) {
+        if ((head.x === this.cuadradoRojo.x && head.y === this.cuadradoRojo.y ) ||
+                head.x === this.cuadradoRojo.x && head.y === this.cuadradoRojo.y) {
             const audioBocado = new Audio(S_BOCADO);
             audioBocado.play();
             
-            this.snake.push(new Segmento(head.x - 10000, head.y - 10000, 10, '#0f0'));
+            this.snake.push(new Segmento(head.x - 20000, head.y - 20000, 20, '#0f0'));
             this.cuadradoRojo = this.generarCoordenadaAleatoria();
             this.generarCuadradosAzules(this.puntuacion + 1);
             this.puntuacion++;
@@ -140,7 +144,7 @@ class Juego {
                 setTimeout(() => {
                     alert('¡Has ganado!');
                     document.getElementById('scoreValue').innerText = this.puntuacion;
-                }, 100);
+                }, 200);
 
                 this.reiniciarJuego();
             }
@@ -153,7 +157,7 @@ class Juego {
                 audioLose.play();
                 setTimeout(() => {
                     alert('Has perdido :(');
-                }, 100); 
+                }, 200); 
                 this.reiniciarJuego();
             }
         }
@@ -164,16 +168,18 @@ class Juego {
                 audioLose.play();
                 setTimeout(() => {
                     alert('Has perdido :(');
-                }, 100);
+                }, 200);
                 this.reiniciarJuego();
             }
         }
     }
 
     generarCoordenadaAleatoria() {
-        let x = Math.floor(Math.random() * (this.canvas.width / 10)) * 10;
-        let y = Math.floor(Math.random() * (this.canvas.height / 10)) * 10;
-        return new Segmento(x, y, 10, '#f00');
+
+        let x = Math.floor(Math.random() * this.canvas.width / 20) * 20;
+        let y = Math.floor(Math.random() * this.canvas.height /20) * 20;
+
+        return new Segmento(x, y, 20, '#f00');
     }
 
     generarCuadradosAzules(n) {
@@ -191,7 +197,7 @@ class Juego {
 
     // Reiniciar el juego
     reiniciarJuego() {
-        this.snake = [new Segmento(this.canvas.width / 2, this.canvas.height / 2, 10, '#0f0')];
+        this.snake = [new Segmento(this.canvas.width / 2, this.canvas.height / 2, 20, '#0f0')];
         this.direccion = null;
         this.cuadradoRojo = this.generarCoordenadaAleatoria();
         this.cuadradosAzules = [];
@@ -203,8 +209,8 @@ class Juego {
         this.context.fillStyle = "#F7F9FA"; // Color de fondo
         this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);  // Rellenar el fondo
         this.snake.forEach(segmento => segmento.dibujar(this.context)); // Dibujar la serpiente
-        this.cuadradoRojo.dibujar(this.context);  // Dibujar el cuadrado rojo
-        this.cuadradosAzules.forEach(azul => azul.dibujar(this.context)); // Dibujar los cuadrados azules
+        this.context.drawImage(I_MANZANA, this.cuadradoRojo.x, this.cuadradoRojo.y, 20, 20);
+        this.cuadradosAzules.forEach(azul => this.context.drawImage(I_PILAR, azul.x, azul.y, 20, 20));
     }
 }
 
