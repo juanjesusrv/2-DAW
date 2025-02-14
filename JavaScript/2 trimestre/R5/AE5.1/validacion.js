@@ -1,3 +1,19 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const username = localStorage.getItem("username");
+    const paragraph = document.querySelector("p");
+
+    if (!username) {
+        const user = prompt("Por favor, introduce tu nombre de usuario:");
+        if (user) {
+            localStorage.setItem("username", user);
+            paragraph.textContent = `¡Bienvenido ${user}, que delicatessen deseas probar hoy!`;
+        }
+    } else {
+        paragraph.textContent = `¡Bienvenido ${username}, que delicatessen deseas probar hoy!`;
+    }
+});
+
+
 document.getElementById("miFormulario").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevenir envío si hay errores
     let error = false;

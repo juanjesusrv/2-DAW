@@ -116,6 +116,7 @@ class Juego {
         let head = this.snake[0];
         const audioLose = new Audio(S_LOSE);
         const audioWin = new Audio(S_WIN);
+        const maxScore = document.getElementById('highScoreValue').innerText;
         
 
         // Colisión con bordes
@@ -125,6 +126,11 @@ class Juego {
                 alert('Has perdido :(');
             }, 200); 
             document.getElementById('scoreValue').innerText = 0;
+
+            if (this.puntuacion > maxScore) {
+                document.getElementById('highScoreValue').innerText = this.puntuacion;
+            }
+            
             this.reiniciarJuego();
         }
 
@@ -141,6 +147,11 @@ class Juego {
             document.getElementById('scoreValue').innerText = this.puntuacion;
             if (this.puntuacion >= this.maxPuntuacion) {
 
+                let opcion = confirm('¡Has ganado! ¿Quieres seguir jugando?');
+
+                if (opcion) {
+                    this.maxPuntuacion += 100;
+                } else {
 
                 audioWin.play();
                 setTimeout(() => {
@@ -148,7 +159,13 @@ class Juego {
                 }, 200);
 
                 document.getElementById('scoreValue').innerText = 0;
+
+                if (this.puntuacion > maxScore) {
+                    document.getElementById('highScoreValue').innerText = this.puntuacion;
+                }
+
                 this.reiniciarJuego();
+                }
             }
         }
 
@@ -161,6 +178,11 @@ class Juego {
                     alert('Has perdido :(');
                 }, 200); 
                 document.getElementById('scoreValue').innerText = 0;
+
+                if (this.puntuacion > maxScore) {
+                    document.getElementById('highScoreValue').innerText = this.puntuacion;
+                }
+
                 this.reiniciarJuego();
             }
         }
@@ -173,6 +195,11 @@ class Juego {
                     alert('Has perdido :(');
                 }, 200);
                 document.getElementById('scoreValue').innerText = 0;
+
+                if (this.puntuacion > maxScore) {
+                    document.getElementById('highScoreValue').innerText = this.puntuacion;
+                }
+
                 this.reiniciarJuego();
             }
         }
