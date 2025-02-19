@@ -4,70 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.min.css">
-    <title>AE2.27 SASS: KIOSKO FERNANDO. AHORA A DOMICILIO</title>
+    <title>Kiosko Fernando - Pedido a Domicilio</title>
     <script src="validacion.js" defer></script>
 </head>
 <body>
     <h1>Kiosko Fernando</h1>
-    <p>Nuestras delicatessen ahora te las llevamos a casa.</p>
-    <button class="primary-button">Ver Menú</button>
-    <button class="secondary-button">Registrarse</button>
+    <p id="welcome-message">Nuestras delicatessen ahora te las llevamos a casa.</p>
+    <button id="view-order" class="primary-button">Ver Pedido</button>
+    <button id="logout" class="secondary-button">Log out</button>
+    
     <h2>Los más demandados</h2>
-    <div class="product">
+    <div class="product" data-name="Gamba roja" data-price="3.50">
         <img src="https://cdn-icons-png.flaticon.com/512/468/468339.png" alt="Gambas">
         <h3>Gamba roja</h3>
         <p>Gamba roja de Garrucha (150 gramos).</p>
         <p class="important-text">3,50 €</p>
         <button class="buy-button">Comprar</button>
     </div>
-    <div class="product">
+    <div class="product" data-name="Mejillones" data-price="2.00">
         <img src="https://cdn-icons-png.flaticon.com/512/1137/1137928.png" alt="Mejillones">
         <h3>Mejillones</h3>
         <p>Mejillones del Cantábrico (2 unidades).</p>
         <p class="important-text">2,00 €</p>
         <button class="buy-button">Comprar</button>
     </div>
-    <div class="product centered">
-        <img src="https://cdn-icons-png.flaticon.com/512/3751/3751463.png" alt="Prod 3">
+    <div class="product" data-name="Zamburiñas" data-price="4.70">
+        <img src="https://cdn-icons-png.flaticon.com/512/3751/3751463.png" alt="Zamburiñas">
         <h3>Zamburiñas</h3>
         <p>Zamburiñas gallegas (2 unidades)</p>
-        <p class="important-text"> 4,70 €</p>
+        <p class="important-text">4,70 €</p>
         <button class="buy-button">Comprar</button>
     </div>
+    
     <div class="cont-form">
-        <form action="index.php" method="post" id="miFormulario">
+        <form id="miFormulario">
             <h2>Datos de contacto</h2>
-            <table>
-                <tr>
-                    <td><label for="nombre"></label></td>
-                    <td><input type="text" id="nombre" name="nombre" placeholder="Nombre" required></td>
-                </tr>
-                <tr>
-                    <td><label for="apellido"></label></td>
-                    <td><input type="text" id="apellido" name="apellido" placeholder="Primer apellido" required></td>
-                </tr>
-                <tr>
-                    <td><label for="apellido2"></label></td>
-                    <td><input type="text" id="apellido2" name="apellido2" placeholder="Segundo apellido"></td>
-                </tr>
-                <tr>
-                    <td><label for="telefono"></label></td>
-                    <td><input type="tel" id="telefono" name="telefono" placeholder="Teléfono de contacto" required></td>
-                </tr>
-                <tr>
-                    <td><label for="email"></label></td>
-                    <td><input type="email" id="email" name="email" placeholder="Correo electrónico" required></td>
-                </tr>
-                <tr>
-                    <td><label for="direccion"></label></td>
-                    <td><input type="text" id="direccion" name="direccion" placeholder="Dirección de entrega" required></td>
-                </tr>
-                <tr>
-                    <td><button class="primary-button" type="submit">Enviar</button></td>
-                    <td><button class="secondary-button" type="reset">Limpiar</button></td>
-                </tr>
-            </table>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            
+            <label for="apellido">Primer apellido:</label>
+            <input type="text" id="apellido" name="apellido" required>
+            
+            <label for="apellido2">Segundo apellido:</label>
+            <input type="text" id="apellido2" name="apellido2">
+            
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" required>
+            
+            <button id="submit-order" class="primary-button" type="submit">Realizar Pedido</button>
+            <button id="clear-order" class="secondary-button" type="button">Borrar Pedido</button>
         </form>
+    </div>
+    
+    <div id="resumen-pedido" class="summary-container">
+        <h2>Resumen de pedido</h2>
+        <p id="pedido-info">Actualmente no hay productos en el carrito.</p>
     </div>
 </body>
 </html>

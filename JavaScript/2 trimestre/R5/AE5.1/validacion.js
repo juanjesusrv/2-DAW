@@ -1,122 +1,128 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // Manejo de usuario
+    const welcomeMessage = document.getElementById("welcome-message");
     const username = localStorage.getItem("username");
-    const paragraph = document.querySelector("p");
 
     if (!username) {
         const user = prompt("Por favor, introduce tu nombre de usuario:");
         if (user) {
             localStorage.setItem("username", user);
-            paragraph.textContent = `¡Bienvenido ${user}, que delicatessen deseas probar hoy!`;
+            welcomeMessage.textContent = `¡Bienvenido ${user}, qué delicatessen deseas probar hoy!`;
         }
     } else {
-        paragraph.textContent = `¡Bienvenido ${username}, que delicatessen deseas probar hoy!`;
-    }
-});
-
-
-document.getElementById("miFormulario").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevenir envío si hay errores
-    let error = false;
-
-    // Validar nombre
-    const nombre = document.getElementById("nombre");
-    if (!/^[A-Z][a-z]{2,9}$/.test(nombre.value.trim())) {
-        mostrarError(nombre, "El nombre debe tener entre 3 y 10 caracteres alfabéticos, el primero con mayúscula.");
-        error = true;
-    } else {
-        limpiarError(nombre);
+        welcomeMessage.textContent = `¡Bienvenido de nuevo ${username}!, ¿repetimos?`;
     }
 
-    // Validar apellido
-    const apellido = document.getElementById("apellido");
-    if (!/^[A-Z][a-z]{3,7}$/.test(apellido.value.trim())) {
-        mostrarError(apellido, "El apellido debe tener entre 4 y 8 caracteres alfabéticos, el primero con mayúscula.");
-        error = true;
-    } else {
-        limpiarError(apellido);
+    // Manejo del formulario
+    document.getElementById("miFormulario").addEventListener("submit", function(event) {
+        event.preventDefault();
+        let error = false;
+
+        function validarCampo(input, regex, mensaje) {
+            if (!regex.test(input.value.trim())) {
+                mostrarError(input, mensaje);
+                error = true;
+            } else {
+                limpiarError(input);
+            }
+        }
+
+        validarCampo(
+            document.getElementById("nombre"),
+            /^[A-Z][a-z]{2,9}$/, 
+            "El nombre debe comenzar en mayúscula y tener entre 3 y 10 letras."
+        );
+
+        validarCampo(
+            document.getElementById("telefono"),
+            /^\+\d{2} \d{3}-\d{3}-\d{3}$/,
+            "Formato correcto: +99 999-999-999."
+        );
+
+        if (!error) {
+            if (confirm("¿Deseas enviar el pedido?")) {
+                almacenarPedido();
+                alert("Pedido realizado correctamente.");
+            } else {
+                alert("El pedido no se ha enviado, pero los datos han sido guardados.");
+            }
+        }
+    });
+
+    function mostrarError(input, mensaje) {
+        input.style.borderColor = "red";
+        input.setCustomValidity(mensaje);
+        input.reportValidity();
     }
 
-    // Validar segundo apellido (opcional)
-    const apellido2 = document.getElementById("apellido2");
-    if (apellido2.value.trim() !== "" && !/^[A-Z][a-z]{3,7}$/.test(apellido2.value.trim())) {
-        mostrarError(apellido2, "El segundo apellido debe tener entre 4 y 8 caracteres alfabéticos, el primero con mayúscula.");
-        error = true;
-    } else {
-        limpiarError(apellido2);
+    function limpiarError(input) {
+        input.style.borderColor = "initial";
+        input.setCustomValidity("");
     }
 
-    // Validar teléfono
-    const telefono = document.getElementById("telefono");
-    if (!/^\+\d{2} \d{3}-\d{3}-\d{3}$/.test(telefono.value.trim())) {
-        mostrarError(telefono, "El teléfono debe tener el formato +99 999-999-999.");
-        error = true;
-    } else {
-        limpiarError(telefono);
+    document.querySelectorAll("input").forEach(input => {
+        input.addEventListener("input", function() {
+            limpiarError(this);
+        });
+    });
+
+    function almacenarPedido() {
+        let pedido = JSON.parse(sessionStorage.getItem("pedido")) || { productos: [] };
+        pedido.nombre = document.getElementById("nombre").value;
+        pedido.telefono = document.getElementById("telefono").value;
+        pedido.direccion = document.getElementById("direccion").value;
+        sessionStorage.setItem("pedido", JSON.stringify(pedido));
+        actualizarResumenPedido();
     }
 
-    // Validar email
-    const email = document.getElementById("email");
-    if (!/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(email.value.trim())) {
-        mostrarError(email, "El email no es válido.");
-        error = true;
-    } else {
-        limpiarError(email);
+    function actualizarResumenPedido() {
+        const resumen = document.getElementById("pedido-info");
+        const pedido = JSON.parse(sessionStorage.getItem("pedido"));
+
+        if (pedido && pedido.nombre) {
+            resumen.innerHTML = `Pedido a nombre de ${pedido.nombre}, teléfono: ${pedido.telefono}, dirección: ${pedido.direccion}<br>Productos: ${pedido.productos.length > 0 ? pedido.productos.map(p => `${p.nombre} (x${p.cantidad}) - €${p.precio * p.cantidad}`).join(", ") : "No hay productos en el carrito."}`;
+        } else {
+            resumen.textContent = "Actualmente no hay datos de contacto.";
+        }
     }
 
-    // Validar dirección
-    const direccion = document.getElementById("direccion");
-    if (!/^[A-Za-z]{2,20} [0-9]{1,3}$/.test(direccion.value.trim())) {
-        mostrarError(direccion, "La dirección debe incluir un nombre y un número (ejemplo: Calle 123).");
-        error = true;
-    } else {
-        limpiarError(direccion);
-    }
+    document.querySelectorAll(".buy-button").forEach(button => {
+        button.addEventListener("click", function() {
+            const productElement = this.closest(".product");
+            const nombre = productElement.getAttribute("data-name");
+            const precio = parseFloat(productElement.getAttribute("data-price"));
+            
+            let pedido = JSON.parse(sessionStorage.getItem("pedido")) || { productos: [] };
+            let productoExistente = pedido.productos.find(p => p.nombre === nombre);
+            
+            if (productoExistente) {
+                productoExistente.cantidad++;
+            } else {
+                pedido.productos.push({ nombre, precio, cantidad: 1 });
+            }
+            
+            sessionStorage.setItem("pedido", JSON.stringify(pedido));
+            actualizarResumenPedido();
+        });
+    });
 
-    // Si no hay errores, enviar formulario
-    if (!error) {
-        document.getElementById("miFormulario").submit();
-    }
-});
+    document.getElementById("clear-order").addEventListener("click", function() {
+        sessionStorage.removeItem("pedido");
+        actualizarResumenPedido();
+    });
 
-// Función para mostrar errores (borde rojo y mensaje nativo del navegador)
-function mostrarError(input, mensaje) {
-    input.style.borderColor = "red";
-    input.setCustomValidity(mensaje); // Establecer mensaje personalizado
-    input.reportValidity(); // Mostrar mensaje nativo del navegador
-}
+    document.getElementById("logout").addEventListener("click", function() {
+        localStorage.removeItem("username");
+        location.reload();
+    });
 
-// Función para limpiar errores (restaurar estilo y mensaje)
-function limpiarError(input) {
-    input.style.borderColor = "initial";
-    input.setCustomValidity(''); // Limpiar mensaje personalizado
-}
-
-// Escuchar eventos individuales para limpiar errores mientras se escribe
-document.getElementById("nombre").addEventListener("input", function() {
-    limpiarError(this);
-});
-document.getElementById("apellido").addEventListener("input", function() {
-    limpiarError(this);
-});
-document.getElementById("apellido2").addEventListener("input", function() {
-    limpiarError(this);
-});
-document.getElementById("telefono").addEventListener("input", function() {
-    limpiarError(this);
-});
-document.getElementById("email").addEventListener("input", function() {
-    limpiarError(this);
-});
-document.getElementById("direccion").addEventListener("input", function() {
-    limpiarError(this);
-});
+    actualizarResumenPedido();
 
 
-document.getElementById("miFormulario").addEventListener("reset", function() {
-    limpiarError(document.getElementById("nombre"));
-    limpiarError(document.getElementById("apellido"));
-    limpiarError(document.getElementById("apellido2"));
-    limpiarError(document.getElementById("telefono"));
-    limpiarError(document.getElementById("email"));
-    limpiarError(document.getElementById("direccion"));
+
+    /* Quiero que el botón con id view-order quiero que me lleve hasta el formulario cuando lo pulso*/
+
+    document.getElementById("view-order").addEventListener("click", function() {
+        document.getElementById("miFormulario").scrollIntoView();
+    });
 });
